@@ -9,10 +9,10 @@ import (
 
 type HostService interface {
 	GetHost(id string) *entity.Host
-	Stop(vimId int)
-	Start(vimId int)
-	Reboot(vimId int)
-	Shutdown(vimId int)
+	Stop(vimId int) error
+	Start(vimId int) error
+	Reboot(vimId int) error
+	Shutdown(vimId int) error
 }
 
 type hostService struct {
@@ -48,34 +48,38 @@ func (h hostService) GetHost(id string) *entity.Host {
 	}
 }
 
-func (h hostService) Stop(vimId int) {
+func (h hostService) Stop(vimId int) error {
 	vmr := proxmox.NewVmRef(vimId)
 	_, err := h.proxmox.StopVm(vmr)
 	if err != nil {
-		return
+		return err
 	}
+	return nil
 }
 
-func (h hostService) Start(vimId int) {
+func (h hostService) Start(vimId int) error {
 	vmr := proxmox.NewVmRef(vimId)
 	_, err := h.proxmox.StartVm(vmr)
 	if err != nil {
-		return
+		return err
 	}
+	return nil
 }
 
-func (h hostService) Reboot(vimId int) {
+func (h hostService) Reboot(vimId int) error {
 	vmr := proxmox.NewVmRef(vimId)
 	_, err := h.proxmox.ResetVm(vmr)
 	if err != nil {
-		return
+		return err
 	}
+	return nil
 }
 
-func (h hostService) Shutdown(vimId int) {
+func (h hostService) Shutdown(vimId int) error {
 	vmr := proxmox.NewVmRef(vimId)
 	_, err := h.proxmox.ShutdownVm(vmr)
 	if err != nil {
-		return
+		return err
 	}
+	return nil
 }
