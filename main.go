@@ -22,7 +22,7 @@ func main() {
 	db := mysql.NewClient(os.Getenv("DATABASE_USER"), os.Getenv("DATABASE_PASSWORD"), os.Getenv("DATABASE_IP"),
 		os.Getenv("DATABASE_PORT"), os.Getenv("DATABASE_NAME"))
 	service := service2.NewHostService(db, c)
-	ticker := time.NewTicker(time.Hour * 5)
+	ticker := time.NewTicker(time.Minute * 1)
 	quit := make(chan struct{})
 	go func() {
 		for {
