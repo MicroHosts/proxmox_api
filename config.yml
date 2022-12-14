@@ -1,0 +1,10 @@
+mysql:
+  host: 192.168.0.106
+  port: 3306
+  user: root
+  pass: example
+  db: example
+proxmox:
+  PM_USER: "root@pam!test"
+  PM_TOKEN:  "28fdecdb-7ff3-43c5-9d64-6a0f493055b5"
+  PM_API_URL: "https://192.168.0.2:8006/api2/json"
