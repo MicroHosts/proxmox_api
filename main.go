@@ -112,3 +112,7 @@ func deleteNoPayment(db *sql.DB, service service2.HostService) {
 		}
 	}
 }
+
+func deletePaymentExpire(db *sql.DB) {
+	db.Exec("DELETE FROM `Payment` WHERE `createdAt` <= ( CURDATE() - INTERVAL 2 DAY ) AND `paid`=false;")
+}
