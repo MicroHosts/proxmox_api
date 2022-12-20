@@ -11,9 +11,9 @@ type Config struct {
 }
 
 type Proxmox struct {
-	PmUser   string `yaml:"PM_USER"`
-	PmToken  string `yaml:"PM_TOKEN"`
-	PmApiUrl string `yaml:"PM_API_URL"`
+	PmUser   string `yaml:"PM_USER" env:"PM_USER"`
+	PmToken  string `yaml:"PM_TOKEN" env:"PM_TOKEN"`
+	PmApiUrl string `yaml:"PM_API_URL" env:"PM_API_URL"`
 }
 
 type MySQL struct {
